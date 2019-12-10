@@ -3,9 +3,9 @@ import { expect } from "chai";
 import { configure, shallow } from "enzyme";
 
 import TwitterMessage from "../src/components/TwitterMessage";
-import Adapter from 'enzyme-adapter-react-16'
+import Adapter from "enzyme-adapter-react-16";
 
-configure({ adapter: new Adapter() })
+configure({ adapter: new Adapter() });
 
 describe("<TwitterMessage />", () => {
   describe("Saving input value in state", () => {
@@ -13,6 +13,7 @@ describe("<TwitterMessage />", () => {
       const wrapper = shallow(<TwitterMessage maxChars={280} />);
       const event = { target: { value: "f", id: "message", name: "message" } };
       wrapper.find("input").simulate("change", event);
+      console.log(wrapper.find("input").props().value);
       expect(wrapper.find("input").props().value).to.deep.equal(
         event.target.value,
         "The input value is not being updated when it changes"
